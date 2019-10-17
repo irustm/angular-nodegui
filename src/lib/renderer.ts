@@ -5,7 +5,7 @@ import {
   RendererStyleFlags2,
   RendererType2
 } from '@angular/core';
-import { QWidget, QLabel, FlexLayout } from '@nodegui/nodegui';
+import { QWidget, QPushButton, QLabel, FlexLayout } from '@nodegui/nodegui';
 import { QWindowService } from './window';
 
 @Injectable()
@@ -32,12 +32,13 @@ export class NodeguiRenderer implements Renderer2 {
   constructor(private window: QWindowService) {}
 
   createElement(name: string, namespace?: string | null): any {
-    const centralWidget = new QWidget();
-    return centralWidget.setObjectName('myroot');
+    const button = new QPushButton();
+    button.setObjectName('button');
+    return button;
   }
 
   createText(value: string): any {
-    const label = new QLabel();
+    const label = new QLabel(); // may be use Qwidget? need for set button to text
     label.setText(value);
     label.setInlineStyle(`
       color: red;
@@ -53,7 +54,11 @@ export class NodeguiRenderer implements Renderer2 {
 
   appendChild(parent: FlexLayout, newChild: any): void {
     if (newChild) {
-      parent.addWidget(newChild);
+      if (parent instanceof QPushButton && newChild instanceof QLabel) {
+        parent.setText(newChild.text);
+      } else {
+        parent.addWidget(newChild);
+      }
     }
   }
 
@@ -61,7 +66,9 @@ export class NodeguiRenderer implements Renderer2 {
 
   destroy(): void {}
 
-  insertBefore(parent: any, newChild: any, refChild: any): void {}
+  insertBefore(parent: any, newChild: any, refChild: any): void {
+    console.log('insertBefore');
+  }
 
   listen(
     target: any,
@@ -71,7 +78,9 @@ export class NodeguiRenderer implements Renderer2 {
     return () => {};
   }
 
-  nextSibling(node: any): any {}
+  nextSibling(node: any): any {
+    console.log('nextSibling');
+  }
 
   parentNode(node: any): any {}
 
@@ -110,6 +119,7 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   setValue(node: any, value: string): void {
+    // use new values may be button not set text, may be use widget for text?
     node.setText(value);
   }
 }

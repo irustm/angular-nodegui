@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     Hello {{ name }}
+    <button>text - {{ name }}</button>
   `
 })
 export class AppComponent {

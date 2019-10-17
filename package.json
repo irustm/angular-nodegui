@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "qode ./dist/src/main.js",
+    "start": "npm run build-app && qode ./dist/src/main.js",
     "build": "ng build",
     "build-app": "ngc -p tsconfig.app.json",
     "test": "ng test",
