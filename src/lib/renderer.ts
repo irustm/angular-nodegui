@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { QWidget, QPushButton, QLabel, FlexLayout } from '@nodegui/nodegui';
 import { QWindowService } from './window';
+import { TextField } from './nodes';
 
 @Injectable()
 export class NodeguiRendererFactory implements RendererFactory2 {
@@ -38,24 +39,39 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   createText(value: string): any {
-    const label = new QLabel(); // may be use Qwidget? need for set button to text
-    label.setText(value);
-    label.setInlineStyle(`
-      color: red;
-    `);
-    return label;
+    // may be use Qwidget? need for set button to text
+
+    // const label = new QLabel();
+    // label.setText(value);
+    // label.setInlineStyle(`
+    //  color: red;
+    // `);
+    return new TextField(value);
   }
 
   selectRootElement(): any {
     return this.window.rootLayout;
   }
 
-  addClass(el: any, name: string): void {}
+  addClass(el: any, name: string): void {
+    console.log(el, name);
+  }
 
   appendChild(parent: FlexLayout, newChild: any): void {
+    // console.log(parent, newChild);
+
     if (newChild) {
-      if (parent instanceof QPushButton && newChild instanceof QLabel) {
-        parent.setText(newChild.text);
+      if (parent instanceof FlexLayout && newChild instanceof TextField) {
+        const label = new QLabel();
+        newChild.parent = label;
+        label.setText(newChild.value);
+        parent.addWidget(label);
+      } else if (
+        parent instanceof QPushButton &&
+        newChild instanceof TextField
+      ) {
+        newChild.parent = parent;
+        parent.setText(newChild.value);
       } else {
         parent.addWidget(newChild);
       }
@@ -102,6 +118,7 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   setProperty(el: any, name: string, value: any): void {
+    console.log('setProperty', el, name, value);
     if (name === 'styles') {
       name = 'style';
     } else {
@@ -116,10 +133,15 @@ export class NodeguiRenderer implements Renderer2 {
     flags?: RendererStyleFlags2
   ): void {
     el[style] = value;
+    // console.log('setStyle', el, style, value);
+    el.setInlineStyle(`${style}:${value}`);
   }
 
   setValue(node: any, value: string): void {
-    // use new values may be button not set text, may be use widget for text?
-    node.setText(value);
+    if (node instanceof TextField) {
+      node.parent.setText(value);
+    } else {
+      node.setText(value);
+    }
   }
 }
