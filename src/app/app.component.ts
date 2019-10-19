@@ -3,8 +3,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    Hello {{ name }}
-    <button [style.color]="'green'">Button - {{ name }}</button>
+    <window title="Angular app in window!">
+      <text [style.font-size.px]="45">Hello, {{ name }}</text>
+
+      <button [style.background-color]="'green'">
+        Green button
+      </button>
+    </window>
   `
 })
 export class AppComponent {

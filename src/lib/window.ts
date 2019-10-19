@@ -5,13 +5,11 @@ import { QMainWindow, FlexLayout, QWidget } from '@nodegui/nodegui';
 export class QWindowService {
   public window: QMainWindow;
   public rootLayout: FlexLayout;
+  public centralWidget: QWidget;
+
   constructor() {
     this.window = new QMainWindow();
-    const centralWidget = new QWidget();
-    centralWidget.setObjectName('myroot');
-
-    this.rootLayout = new FlexLayout();
-    centralWidget.setLayout(this.rootLayout);
-    this.window.setCentralWidget(centralWidget);
+    this.centralWidget = new QWidget();
+    this.centralWidget.setObjectName('myroot');
   }
 }

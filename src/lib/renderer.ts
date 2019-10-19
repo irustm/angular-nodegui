@@ -5,7 +5,13 @@ import {
   RendererStyleFlags2,
   RendererType2
 } from '@angular/core';
-import { QWidget, QPushButton, QLabel, FlexLayout } from '@nodegui/nodegui';
+import {
+  QWidget,
+  QPushButton,
+  QLabel,
+  FlexLayout,
+  QMainWindow
+} from '@nodegui/nodegui';
 import { QWindowService } from './window';
 import { TextField } from './nodes';
 
@@ -33,24 +39,22 @@ export class NodeguiRenderer implements Renderer2 {
   constructor(private window: QWindowService) {}
 
   createElement(name: string, namespace?: string | null): any {
-    const button = new QPushButton();
-    button.setObjectName('button');
-    return button;
+    switch (name) {
+      case 'button':
+        return new QPushButton();
+      case 'window':
+        return new FlexLayout();
+      case 'text':
+        return new QLabel();
+    }
   }
 
   createText(value: string): any {
-    // may be use Qwidget? need for set button to text
-
-    // const label = new QLabel();
-    // label.setText(value);
-    // label.setInlineStyle(`
-    //  color: red;
-    // `);
     return new TextField(value);
   }
 
   selectRootElement(): any {
-    return this.window.rootLayout;
+    return this.window.window;
   }
 
   addClass(el: any, name: string): void {
@@ -58,10 +62,14 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   appendChild(parent: FlexLayout, newChild: any): void {
-    // console.log(parent, newChild);
-
     if (newChild) {
-      if (parent instanceof FlexLayout && newChild instanceof TextField) {
+      if (parent instanceof QMainWindow && newChild instanceof FlexLayout) {
+        this.window.centralWidget.setLayout(newChild);
+        this.window.window.setCentralWidget(this.window.centralWidget);
+      } else if (
+        parent instanceof FlexLayout &&
+        newChild instanceof TextField
+      ) {
         const label = new QLabel();
         newChild.parent = label;
         label.setText(newChild.value);
@@ -70,6 +78,11 @@ export class NodeguiRenderer implements Renderer2 {
         parent instanceof QPushButton &&
         newChild instanceof TextField
       ) {
+        newChild.parent = parent;
+        parent.setText(newChild.value);
+      } else if (newChild instanceof QLabel) {
+        parent.addWidget(newChild);
+      } else if (parent instanceof QLabel && newChild instanceof TextField) {
         newChild.parent = parent;
         parent.setText(newChild.value);
       } else {
@@ -114,7 +127,9 @@ export class NodeguiRenderer implements Renderer2 {
     value: string,
     namespace?: string | null
   ): void {
-    el[name] = value;
+    if (el instanceof FlexLayout && name === 'title') {
+      this.window.window.setWindowTitle(value);
+    }
   }
 
   setProperty(el: any, name: string, value: any): void {
@@ -138,6 +153,8 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   setValue(node: any, value: string): void {
+    // console.log('setValue', node, value);
+
     if (node instanceof TextField) {
       node.parent.setText(value);
     } else {
