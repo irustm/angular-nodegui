@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <window title="Angular app in window!">
       <text [style.font-size.px]="45">Hello, {{ name }}</text>
 
-      <button [style.background-color]="'green'">
+      <button [style.background-color]="'green'" (clicked)="setName()">
         Green button
       </button>
     </window>
@@ -14,4 +14,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public name = 'World!';
+
+  setName() {
+    this.name = 'irustm';
+  }
 }
