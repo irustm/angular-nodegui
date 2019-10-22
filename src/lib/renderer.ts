@@ -13,18 +13,24 @@ import {
   QMainWindow
 } from '@nodegui/nodegui';
 import { QWindowService } from './window';
-import { TextField } from './nodes';
+import { NgWindow } from './components/window';
+import { NgComponent } from './components/component';
+import { ComponentsMap, NgComponentClass } from './components/components-map';
+import { TextField } from './components/nodes';
 
 @Injectable()
 export class NodeguiRendererFactory implements RendererFactory2 {
   protected renderer: Renderer2;
 
-  constructor(private window: QWindowService) {
-    this.renderer = new NodeguiRenderer(window);
+  constructor(
+    private readonly windowService: QWindowService,
+    components: ComponentsMap
+  ) {
+    this.renderer = new NodeguiRenderer(windowService, components);
   }
 
   end() {
-    this.window.window.show();
+    this.windowService.window.show();
   }
 
   createRenderer(hostElement: any, type: RendererType2 | null): Renderer2 {
@@ -34,18 +40,22 @@ export class NodeguiRendererFactory implements RendererFactory2 {
 
 export class NodeguiRenderer implements Renderer2 {
   readonly data: { [p: string]: any };
+  readonly componentsMap: Map<string, NgComponentClass>;
   destroyNode: ((node: any) => void) | null;
 
-  constructor(private window: QWindowService) {}
+  constructor(
+    private readonly window: QWindowService,
+    components: ComponentsMap
+  ) {
+    this.componentsMap = components.map;
+  }
 
   createElement(name: string, namespace?: string | null): any {
-    switch (name) {
-      case 'button':
-        return new QPushButton();
-      case 'window':
-        return new FlexLayout();
-      case 'text':
-        return new QLabel();
+    const Component = this.componentsMap.get(name);
+    if (Component) {
+      return new Component();
+    } else {
+      console.warn(`${name} component is not find in components map`);
     }
   }
 
@@ -61,32 +71,14 @@ export class NodeguiRenderer implements Renderer2 {
     console.log(el, name);
   }
 
-  appendChild(parent: FlexLayout, newChild: any): void {
+  appendChild(parent: NgComponent, newChild: any): void {
     if (newChild) {
-      if (parent instanceof QMainWindow && newChild instanceof FlexLayout) {
+      if (parent instanceof QMainWindow && newChild instanceof NgWindow) {
+        newChild.parent = parent;
         this.window.centralWidget.setLayout(newChild);
         this.window.window.setCentralWidget(this.window.centralWidget);
-      } else if (
-        parent instanceof FlexLayout &&
-        newChild instanceof TextField
-      ) {
-        const label = new QLabel();
-        newChild.parent = label;
-        label.setText(newChild.value);
-        parent.addWidget(label);
-      } else if (
-        parent instanceof QPushButton &&
-        newChild instanceof TextField
-      ) {
-        newChild.parent = parent;
-        parent.setText(newChild.value);
-      } else if (newChild instanceof QLabel) {
-        parent.addWidget(newChild);
-      } else if (parent instanceof QLabel && newChild instanceof TextField) {
-        newChild.parent = parent;
-        parent.setText(newChild.value);
       } else {
-        parent.addWidget(newChild);
+        parent.appendChild(newChild);
       }
     }
   }
@@ -95,8 +87,8 @@ export class NodeguiRenderer implements Renderer2 {
 
   destroy(): void {}
 
-  insertBefore(parent: any, newChild: any, refChild: any): void {
-    console.log('insertBefore');
+  insertBefore(parent: NgComponent, newChild: any, refChild: any): void {
+    parent.insertBefore(newChild, refChild);
   }
 
   listen(
@@ -113,52 +105,57 @@ export class NodeguiRenderer implements Renderer2 {
 
   parentNode(node: any): any {}
 
-  removeAttribute(el: any, name: string, namespace?: string | null): void {}
+  removeAttribute(
+    el: NgComponent,
+    name: string,
+    namespace?: string | null
+  ): void {
+    el.removeAttribute(name, namespace);
+  }
 
-  removeChild(parent: any, oldChild: any): void {}
+  removeChild(parent: NgComponent, oldChild: any): void {
+    parent.removeChild(oldChild);
+  }
 
-  removeClass(el: any, name: string): void {}
+  removeClass(el: NgComponent, name: string): void {
+    el.removeClass(name);
+  }
 
-  removeStyle(el: any, style: string, flags?: RendererStyleFlags2): void {}
+  removeStyle(
+    el: NgComponent,
+    style: string,
+    flags?: RendererStyleFlags2
+  ): void {
+    el.removeStyle(style, flags);
+  }
 
   setAttribute(
-    el: any,
+    el: NgComponent,
     name: string,
     value: string,
     namespace?: string | null
   ): void {
-    if (el instanceof FlexLayout && name === 'title') {
-      this.window.window.setWindowTitle(value);
+    if (el instanceof QMainWindow) {
+      console.log(`${QMainWindow.name} name = ${value}`);
+    } else {
+      el.setNgAttribute(name, value, namespace);
     }
   }
 
-  setProperty(el: any, name: string, value: any): void {
-    console.log('setProperty', el, name, value);
-    if (name === 'styles') {
-      name = 'style';
-    } else {
-      el[name] = value;
-    }
+  setProperty(el: NgComponent, name: string, value: any): void {
+    el.setProperty(name, value);
   }
 
   setStyle(
-    el: any,
+    el: NgComponent,
     style: string,
     value: any,
     flags?: RendererStyleFlags2
   ): void {
-    el[style] = value;
-    // console.log('setStyle', el, style, value);
-    el.setInlineStyle(`${style}:${value}`);
+    el.setStyle(style, value, flags);
   }
 
-  setValue(node: any, value: string): void {
-    // console.log('setValue', node, value);
-
-    if (node instanceof TextField) {
-      node.parent.setText(value);
-    } else {
-      node.setText(value);
-    }
+  setValue(node: NgComponent, value: string): void {
+    node.setValue(value);
   }
 }

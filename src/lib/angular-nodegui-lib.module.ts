@@ -8,6 +8,7 @@ import {
 
 import { NodeguiRendererFactory } from './renderer';
 import { QWindowService } from './window';
+import { ComponentsMap } from './components/components-map';
 
 @Injectable()
 export class NodeguiErrorHandler implements ErrorHandler {
@@ -20,10 +21,11 @@ export class NodeguiErrorHandler implements ErrorHandler {
   exports: [ApplicationModule],
   providers: [
     QWindowService,
+    ComponentsMap,
     {
       provide: RendererFactory2,
       useClass: NodeguiRendererFactory,
-      deps: [QWindowService]
+      deps: [QWindowService, ComponentsMap]
     },
     { provide: ErrorHandler, useClass: NodeguiErrorHandler }
   ]
