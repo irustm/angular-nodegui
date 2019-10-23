@@ -4,11 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <window title="Angular app in window!">
-      <text [style.font-size.px]="45">Hello, {{ name }}</text>
+      <view>
+        <text [style.font-size.px]="45">Hello, {{ name }}</text>
 
-      <button [style.background-color]="'green'" (clicked)="setName()">
-        Green button
-      </button>
+        <button [style.background-color]="'green'" (clicked)="setName()">
+          Green button
+        </button>
+      </view>
     </window>
   `
 })
