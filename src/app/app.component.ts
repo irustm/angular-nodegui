@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
     <window title="Angular app in window!">
       <view>
         <text [style.font-size.px]="45">Hello, {{ name }}</text>
-
+        <checkbox [checked]="true"></checkbox>
+        <checkbox [checked]="true" [enabled]="false"></checkbox>
         <button [style.background-color]="'green'" (clicked)="setName()">
           Green button
         </button>

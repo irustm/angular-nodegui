@@ -1,7 +1,7 @@
-import { QWidget, QLabel, QPushButton } from '@nodegui/nodegui';
+import { QWidget, QLabel, QPushButton, QCheckBox } from '@nodegui/nodegui';
 
 export class TextField extends QWidget {
-  public parent: QLabel | QPushButton;
+  public parent: QLabel | QPushButton | QCheckBox;
   constructor(public value: string) {
     super();
   }
