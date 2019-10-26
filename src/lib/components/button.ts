@@ -24,10 +24,18 @@ export class NgButton extends QPushButton implements NgComponent {
     namespace?: string | null
   ): void {}
 
-  public setProperty(name: string, value: any): void {
-    throw new Error('Method not implemented.');
+  public setProperty(name: string, value: boolean | number): void {
+    switch (name) {
+      case 'enabled':
+        this.setEnabled(value as boolean);
+        break;
+      case 'flat':
+        this.setFlat(value as boolean);
+        break;
+      default:
+        break;
+    }
   }
-
   public setStyle(
     style: string,
     value: any,
