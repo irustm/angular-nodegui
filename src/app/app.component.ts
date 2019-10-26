@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <window title="Angular app in window!">
       <view>
+        <image [src]="'C:/temp/iw.jpg'"></image>
         <text [style.font-size.px]="45">Hello, {{ name }}</text>
         <checkbox [checked]="true"></checkbox>
         <checkbox [checked]="true" [enabled]="false"></checkbox>

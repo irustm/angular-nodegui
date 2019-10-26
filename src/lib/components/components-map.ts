@@ -6,6 +6,7 @@ import { NgText } from './text';
 import { NgView } from './view';
 import { NgCheckbox } from './checkbox';
 import { NgDial } from './dial';
+import { NgImage } from './image';
 
 export type Constructable<T> = new () => T;
 export type NgComponentClass = Constructable<NgComponent>;
@@ -24,5 +25,6 @@ export class ComponentsMap {
     this.map.set(NgView.nodeName, NgView);
     this.map.set(NgCheckbox.nodeName, NgCheckbox);
     this.map.set(NgDial.nodeName, NgDial);
+    this.map.set(NgImage.nodeName, NgImage);
   }
 }
