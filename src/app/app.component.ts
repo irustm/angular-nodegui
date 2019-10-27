@@ -22,6 +22,13 @@ import { AspectRatioMode } from '@nodegui/nodegui';
           (textChanged)="textChanged($event)"
         ></linedit>
         <progressbar [value]="40" [minimum]="0" [maximum]="100"></progressbar>
+        <spinbox
+          [prefix]="'aa'"
+          [suffix]="'bb'"
+          [singleStep]="10"
+          [range]="{ minimum: 0, maximum: 50 }"
+          [value]="20"
+        ></spinbox>
       </view>
     </window>
   `

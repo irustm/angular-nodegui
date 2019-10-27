@@ -12,6 +12,7 @@ import { NgPlainTextEdit } from './pline-text-edit';
 import { NgRadioButton } from './radiobutton';
 import { NgProgressBar } from './progress-bar';
 import { NgScrollArea } from './scroll-area';
+import { NgSpinnBox } from './spin-box';
 
 export type Constructable<T> = new () => T;
 export type NgComponentClass = Constructable<NgComponent>;
@@ -36,5 +37,6 @@ export class ComponentsMap {
     this.map.set(NgRadioButton.nodeName, NgRadioButton);
     this.map.set(NgProgressBar.nodeName, NgProgressBar);
     this.map.set(NgScrollArea.nodeName, NgScrollArea);
+    this.map.set(NgSpinnBox.nodeName, NgSpinnBox);
   }
 }
