@@ -14,7 +14,8 @@ export class FileSystemResourceLoader extends ResourceLoader {
   }
 
   get(url: string): Promise<string> {
-    const appDir = path.join(__dirname);
+    // TODO: Load real app dir
+    const appDir = path.join(__dirname, '../../../src/app');
     const templatePath = this.resolve(url, appDir);
 
     return new Promise((resolve, reject) => {

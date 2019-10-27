@@ -9,7 +9,7 @@ import { ElementSchemaRegistry, ResourceLoader } from '@angular/compiler';
 
 import { NodeguiElementSchemaRegistry } from './schema-registry';
 import { NodeguiSanitizer } from './sanitizer';
-// import { FileSystemResourceLoader } from './file-system-resource-loader';
+import { FileSystemResourceLoader } from './file-system-resource-loader';
 
 export const platformNodeguiDynamic = createPlatformFactory(
   platformCoreDynamic,
@@ -25,12 +25,12 @@ export const platformNodeguiDynamic = createPlatformFactory(
             provide: ElementSchemaRegistry,
             useClass: NodeguiElementSchemaRegistry,
             deps: []
+          },
+          {
+            provide: ResourceLoader,
+            useClass: FileSystemResourceLoader,
+            deps: []
           }
-          // {
-          //   provide: ResourceLoader,
-          //   useClass: FileSystemResourceLoader,
-          //   deps: []
-          // }
         ]
       },
       multi: true

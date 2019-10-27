@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "commonjs"
+    "module": "esnext"
   },
   "files": ["src/main-aot.ts"],
   "include": ["src/**/*.ts"],

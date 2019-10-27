@@ -6,7 +6,7 @@
     "start": "npm run build-dev && qode ./dist/src/main.js",
     "start:prod": "qode ./dist/angular-nodegui/main.js",
     "build": "ng build",
-    "build:prod": "ng build --aot",
+    "build:prod": "ng build",
     "build-dev": "ngc -p tsconfig.app.json",
     "build-ngtsc": "ngc -p tsconfig.ngtsc.json",
     "test": "ng test",
