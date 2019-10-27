@@ -21,6 +21,7 @@ import { AspectRatioMode } from '@nodegui/nodegui';
           [placeholderText]="'Insert your name'"
           (textChanged)="textChanged($event)"
         ></linedit>
+        <progressbar [value]="40" [minimum]="0" [maximum]="100"></progressbar>
       </view>
     </window>
   `

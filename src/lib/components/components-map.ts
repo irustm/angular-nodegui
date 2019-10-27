@@ -10,6 +10,7 @@ import { NgImage } from './image';
 import { NgLineEdit } from './line-edit';
 import { NgPlainTextEdit } from './pline-text-edit';
 import { NgRadioButton } from './radiobutton';
+import { NgProgressBar } from './progress-bar';
 
 export type Constructable<T> = new () => T;
 export type NgComponentClass = Constructable<NgComponent>;
@@ -32,5 +33,6 @@ export class ComponentsMap {
     this.map.set(NgLineEdit.nodeName, NgLineEdit);
     this.map.set(NgPlainTextEdit.nodeName, NgPlainTextEdit);
     this.map.set(NgRadioButton.nodeName, NgRadioButton);
+    this.map.set(NgProgressBar.nodeName, NgProgressBar);
   }
 }

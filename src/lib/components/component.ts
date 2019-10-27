@@ -11,7 +11,7 @@ export interface NgComponent {
 
   setStyle(style: string, value: any, flags?: RendererStyleFlags2): void;
 
-  setValue(value: string): void;
+  setValue(value: any): void;
 
   removeAttribute(name: string, namespace?: string | null): void;
 
