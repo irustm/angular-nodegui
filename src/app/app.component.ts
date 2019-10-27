@@ -28,10 +28,12 @@ import { AspectRatioMode } from '@nodegui/nodegui';
           [singleStep]="10"
           [range]="{ minimum: 0, maximum: 50 }"
           [value]="20"
-        ></spinbox>
+        >
+        </spinbox>
       </view>
     </window>
   `
+  // templateUrl: './app.component.html'
 })
 export class AppComponent {
   public name = 'World!';

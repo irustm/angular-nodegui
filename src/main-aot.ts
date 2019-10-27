@@ -5,12 +5,12 @@ import { enableProdMode } from '@angular/core';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-import { platformNodeguiDynamic } from './lib/platform-dynamic';
+import { platformNodeguiStatic } from './lib/platform-static';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformNodeguiDynamic()
-  .bootstrapModule(AppModule)
+platformNodeguiStatic()
+  .bootstrapModuleFactory(AppModule as any)
   .catch(err => console.error(err));

@@ -5,10 +5,11 @@ import {
 } from '@angular/core';
 import { ɵplatformCoreDynamic as platformCoreDynamic } from '@angular/platform-browser-dynamic';
 import { DOCUMENT } from '@angular/common';
-import { ElementSchemaRegistry } from '@angular/compiler';
+import { ElementSchemaRegistry, ResourceLoader } from '@angular/compiler';
 
 import { NodeguiElementSchemaRegistry } from './schema-registry';
 import { NodeguiSanitizer } from './sanitizer';
+// import { FileSystemResourceLoader } from './file-system-resource-loader';
 
 export const platformNodeguiDynamic = createPlatformFactory(
   platformCoreDynamic,
@@ -25,6 +26,11 @@ export const platformNodeguiDynamic = createPlatformFactory(
             useClass: NodeguiElementSchemaRegistry,
             deps: []
           }
+          // {
+          //   provide: ResourceLoader,
+          //   useClass: FileSystemResourceLoader,
+          //   deps: []
+          // }
         ]
       },
       multi: true

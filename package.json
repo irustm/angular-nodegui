@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build-app && qode ./dist/src/main.js",
+    "start": "npm run build-dev && qode ./dist/src/main.js",
+    "start:prod": "qode ./dist/angular-nodegui/main.js",
     "build": "ng build",
-    "build-app": "ngc -p tsconfig.app.json",
+    "build:prod": "ng build --aot",
+    "build-dev": "ngc -p tsconfig.app.json",
+    "build-ngtsc": "ngc -p tsconfig.ngtsc.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
