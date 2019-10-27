@@ -30,4 +30,4 @@ export class NodeguiErrorHandler implements ErrorHandler {
     { provide: ErrorHandler, useClass: NodeguiErrorHandler }
   ]
 })
-export class AngularNodeguiLibModule {}
+export class NodeguiLibModule {}
