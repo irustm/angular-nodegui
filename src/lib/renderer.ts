@@ -28,6 +28,9 @@ export class NodeguiRendererFactory implements RendererFactory2 {
   }
 
   createRenderer(hostElement: any, type: RendererType2 | null): Renderer2 {
+    if (type) {
+      hostElement.setStyleSheet(type.styles);
+    }
     return this.renderer;
   }
 }
@@ -49,6 +52,7 @@ export class NodeguiRenderer implements Renderer2 {
     if (Component) {
       return new Component();
     } else {
+      // TODO create widget with name, may be customm component
       console.warn(`${name} component is not find in components map`);
     }
   }
@@ -150,6 +154,8 @@ export class NodeguiRenderer implements Renderer2 {
     value: any,
     flags?: RendererStyleFlags2
   ): void {
+    console.log('setStyle', style);
+
     el.setStyle(style, value, flags);
   }
 

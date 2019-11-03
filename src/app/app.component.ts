@@ -1,9 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AspectRatioMode } from '@nodegui/nodegui';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styles: [
+    `
+      #app {
+        background-color: gray;
+      }
+      #image {
+      }
+    `
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   public name = 'World!';
