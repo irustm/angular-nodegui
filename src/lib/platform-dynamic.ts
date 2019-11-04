@@ -25,12 +25,12 @@ export const platformNodeguiDynamic = createPlatformFactory(
             provide: ElementSchemaRegistry,
             useClass: NodeguiElementSchemaRegistry,
             deps: []
-          },
-          {
-            provide: ResourceLoader,
-            useClass: FileSystemResourceLoader,
-            deps: []
           }
+          // {
+          //   provide: ResourceLoader,
+          //   useClass: FileSystemResourceLoader,
+          //   deps: []
+          // }
         ]
       },
       multi: true

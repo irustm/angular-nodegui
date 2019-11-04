@@ -52,7 +52,7 @@ export class NodeguiRenderer implements Renderer2 {
     if (Component) {
       return new Component();
     } else {
-      // TODO create widget with name, may be customm component
+      // TODO create widget with name, may be custom component
       console.warn(`${name} component is not find in components map`);
     }
   }

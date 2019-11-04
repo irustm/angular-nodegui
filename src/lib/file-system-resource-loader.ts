@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { ResourceLoader } from '@angular/compiler';
 
+// Do not use
 export class FileSystemResourceLoader extends ResourceLoader {
   resolve(url: string, baseUrl: string): string {
     // Angular assembles absolute URL's and prefixes them with //
@@ -13,8 +14,9 @@ export class FileSystemResourceLoader extends ResourceLoader {
     }
   }
 
-  get(url: string): Promise<string> {
+  get(url: string, aa?: any): Promise<string> {
     // TODO: Load real app dir
+
     const appDir = path.join(__dirname, '../../../src/app');
     const templatePath = this.resolve(url, appDir);
 

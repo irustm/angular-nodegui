@@ -9,7 +9,7 @@ import { AspectRatioMode } from '@nodegui/nodegui';
       #app {
         background-color: gray;
       }
-      #image {
+      #button {
       }
     `
   ],
