@@ -11,11 +11,11 @@ import { HttpFetchBackend } from '../lib/http-fetch-backend';
   declarations: [AppComponent, HelloComponent],
   imports: [NodeguiLibModule, HttpClientModule],
   providers: [
-    GithubService,
-    {
-      provide: HttpClient,
-      useFactory: () => new HttpClient(new HttpFetchBackend())
-    }
+    GithubService
+    // {
+    //   provide: HttpClient,
+    //   useFactory: () => new HttpClient(new HttpFetchBackend()) // TODO: not work
+    // }
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

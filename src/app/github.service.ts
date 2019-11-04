@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import fetch from 'node-fetch';
 
 const API_URL = 'https://api.github.com';
 
@@ -7,9 +9,7 @@ const API_URL = 'https://api.github.com';
   providedIn: 'root'
 })
 export class GithubService {
-  constructor(private http: HttpClient) {}
-
   getUser(username: string) {
-    return this.http.get(`${API_URL}/users/${username}`);
+    return from(fetch(`${API_URL}/users/${username}`).then(res => res.json()));
   }
 }

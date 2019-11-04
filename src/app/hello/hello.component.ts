@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class HelloComponent implements OnInit, OnDestroy {
   @Input() name;
 
-  public avatarUrl: string;
+  public userName: string;
 
   private subscribtion: Subscription;
 
@@ -27,8 +27,7 @@ export class HelloComponent implements OnInit, OnDestroy {
     this.subscribtion = this.github
       .getUser(this.name)
       .subscribe((data: any) => {
-        console.log(data);
-        this.avatarUrl = data.avatar_url;
+        this.userName = data.name;
       });
   }
 

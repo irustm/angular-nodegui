@@ -20,7 +20,7 @@ export class HttpFetchBackend extends HttpBackend {
         credentials: req.withCredentials ? 'same-origin' : undefined,
         headers: req.headers ? strMapToObj(req.headers) : undefined,
         body: req.body ? JSON.stringify(req.body) : undefined
-      })
+      }).then(res => res.json())
     );
   }
 }
