@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-nodegui": {
+    "angular-nodegui-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-nodegui",
+            "outputPath": "dist/angular-nodegui-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -60,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-nodegui:build"
+            "browserTarget": "angular-nodegui-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-nodegui:build:production"
+              "browserTarget": "angular-nodegui-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-nodegui:build"
+            "browserTarget": "angular-nodegui-app:build"
           }
         },
         "test": {
@@ -99,16 +99,51 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-nodegui:serve"
+            "devServerTarget": "angular-nodegui-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-nodegui:serve:production"
+              "devServerTarget": "angular-nodegui-app:serve:production"
             }
+          }
+        }
+      }
+    },
+    "angular-nodegui": {
+      "projectType": "library",
+      "root": "projects/angular-nodegui",
+      "sourceRoot": "projects/angular-nodegui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-nodegui/tsconfig.lib.json",
+            "project": "projects/angular-nodegui/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-nodegui/src/test.ts",
+            "tsConfig": "projects/angular-nodegui/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-nodegui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-nodegui/tsconfig.lib.json",
+              "projects/angular-nodegui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-nodegui"
+  "defaultProject": "angular-nodegui-app"
 }

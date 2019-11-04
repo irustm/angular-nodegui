@@ -1,11 +1,10 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { NodeguiLibModule } from '../../projects/angular-nodegui/src/lib/nodegui-lib.module';
 
 import { AppComponent } from './app.component';
-import { NodeguiLibModule } from '../lib/nodegui-lib.module';
 import { HelloComponent } from './hello/hello.component';
 import { GithubService } from './github.service';
-import { HttpFetchBackend } from '../lib/http-fetch-backend';
 
 @NgModule({
   declarations: [AppComponent, HelloComponent],

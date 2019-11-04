@@ -2,7 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "commonjs"
+    "module": "commonjs",
+    "paths": {
+      "angular-nodegui": ["projects/angular-nodegui/src/index.ts"]
+    }
   },
   "files": ["src/main.ts"],
   "include": ["src/**/*.ts"],

@@ -13,7 +13,10 @@
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "types": ["node"],
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "angular-nodegui": ["projects/angular-nodegui/src/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
