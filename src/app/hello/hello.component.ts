@@ -15,7 +15,9 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class HelloComponent implements OnInit, OnDestroy {
-  @Input() name;
+  @Input() set name(value) {
+    this.getUsername(value);
+  }
 
   public userName: string;
 
@@ -23,12 +25,16 @@ export class HelloComponent implements OnInit, OnDestroy {
 
   constructor(private github: GithubService) {}
 
-  ngOnInit(): void {
-    this.subscribtion = this.github
-      .getUser(this.name)
-      .subscribe((data: any) => {
-        this.userName = data.name;
-      });
+  ngOnInit(): void {}
+
+  private getUsername(username: string) {
+    if (this.subscribtion) {
+      this.subscribtion.unsubscribe();
+    }
+
+    this.subscribtion = this.github.getUser(username).subscribe((data: any) => {
+      this.userName = data.name;
+    });
   }
 
   ngOnDestroy(): void {

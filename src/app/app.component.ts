@@ -8,7 +8,7 @@ import { AspectRatioMode } from '@nodegui/nodegui';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  public name = 'World!';
+  public name = 'irustm';
   public aspectRatioMode = AspectRatioMode.KeepAspectRatio;
 
   setName() {
