@@ -5,12 +5,13 @@ import {
   RendererStyleFlags2,
   RendererType2
 } from '@angular/core';
-import { QMainWindow, NativeEvent } from '@nodegui/nodegui';
+import { QMainWindow, NativeEvent, QWidget } from '@nodegui/nodegui';
 import { QWindowService } from './window';
 import { NgWindow } from './components/window';
 import { NgComponent } from './components/component';
 import { ComponentsMap, NgComponentClass } from './components/components-map';
 import { TextField } from './components/nodes';
+import { NgView } from './components/view';
 
 @Injectable()
 export class NodeguiRendererFactory implements RendererFactory2 {
@@ -52,8 +53,9 @@ export class NodeguiRenderer implements Renderer2 {
     if (Component) {
       return new Component();
     } else {
-      // TODO create widget with name, may be custom component
-      console.warn(`${name} component is not find in components map`);
+      const widget = new NgView();
+      widget.setObjectName(name);
+      return widget;
     }
   }
 

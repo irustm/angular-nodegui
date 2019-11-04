@@ -4,15 +4,7 @@ import { AspectRatioMode } from '@nodegui/nodegui';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [
-    `
-      #app {
-        background-color: gray;
-      }
-      #button {
-      }
-    `
-  ],
+  styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
