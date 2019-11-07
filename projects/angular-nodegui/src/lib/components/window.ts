@@ -1,4 +1,4 @@
-import { FlexLayout, QMainWindow } from '@nodegui/nodegui';
+import { FlexLayout, QMainWindow, WindowType } from '@nodegui/nodegui';
 import { NgComponent } from './component';
 import { RendererStyleFlags2 } from '@angular/core';
 
@@ -17,8 +17,13 @@ export class NgWindow extends FlexLayout implements NgComponent {
     value: string,
     namespace?: string | null
   ): void {
-    if (name === 'title') {
-      this.parent.setWindowTitle(value);
+    switch (name) {
+      case 'title':
+        this.parent.setWindowTitle(value);
+        break;
+
+      default:
+        break;
     }
   }
 
