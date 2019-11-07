@@ -29,6 +29,6 @@ npm start
 
 ## Demo
 
-
-
-Coming soon..
+<p align="center">
+  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_start.png" width="350" title="hover text">
+</p>
