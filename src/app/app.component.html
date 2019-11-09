@@ -1,19 +1,11 @@
-<window #window title="Angular app in window!">
+<window #window title="Angular native app!">
   <view id="app">
-    <image
-      id="image"
-      [src]="'./src/assets/angular.png'"
-      [aspectRatioMode]="aspectRatioMode"
-    ></image>
+    <image id="image" [src]="'./src/assets/angular.png'" [aspectRatioMode]="aspectRatioMode"></image>
 
     <app-hello [name]="name"></app-hello>
 
-    <text>Github name</text>
-    <linedit
-      [text]="name"
-      [placeholderText]="'Insert github username'"
-      (textChanged)="textChanged($event)"
-    ></linedit>
+    <text>Github username</text>
+    <linedit [text]="name" [placeholderText]="'Insert github username'" (textChanged)="textChanged($event)"></linedit>
 
     <!-- <checkbox [checked]="true"></checkbox>
     <checkbox [checked]="true" [enabled]="false"></checkbox>

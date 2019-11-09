@@ -5,7 +5,7 @@ import {
   OnInit,
   ElementRef
 } from '@angular/core';
-import { AspectRatioMode, WindowType } from '@nodegui/nodegui';
+import { AspectRatioMode } from '@nodegui/nodegui';
 import { NgWindow } from '../../projects/angular-nodegui/src/lib/components/window';
 
 @Component({
@@ -25,9 +25,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const win = this.window.nativeElement.parent;
 
-    win.setMinimumSize(630, 560);
-    // win.setWindowFlag(WindowType.FramelessWindowHint, true);
-    // win.setWindowFlag(WindowType.Widget, true);
+    win.resize(480, 620);
+    win.setMinimumSize(480, 620);
   }
 
   setName() {
