@@ -21,6 +21,9 @@ export class NgWindow extends FlexLayout implements NgComponent {
       case 'title':
         this.parent.setWindowTitle(value);
         break;
+      case 'id':
+        this.parent.setObjectName(value);
+        break;
 
       default:
         break;

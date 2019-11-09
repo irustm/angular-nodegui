@@ -1,0 +1,27 @@
+#win {
+  background-color: transparent;
+}
+
+#image {
+  flex: 2;
+  qproperty-alignment: 'AlignCenter';
+  margin-right: '10%';
+}
+
+#container {
+  height: '100%';
+}
+
+
+#details {
+  flex: 1;
+  padding: 10px;
+  justify-content: 'space-around';
+  background-color: qlineargradient( x1:0 y1:0, x2:0 y2:1, stop:0 rgba(32,65,106,0.6), stop:1 rgba(8,8,8,0.6));
+  border-radius: 5px;
+}
+
+#tempbox {
+  margin-vertical: 10px;
+  flex-direction: 'row';
+}

@@ -1,11 +1,11 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "../../dist/weather-demo",
     "module": "commonjs"
   },
   "files": ["src/main.ts"],
-  "include": ["src/**/*.ts", "projects/weather-demo/src/**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["src/test.ts", "src/**/*.spec.ts"],
 
   "angularCompilerOptions": {

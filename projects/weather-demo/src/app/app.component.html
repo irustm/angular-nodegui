@@ -1,0 +1,11 @@
+<window #window title="Weather" id="win">
+  <view id="container">
+    <image id="image" [src]="'./projects/weather-demo/src/assets/04d.png'" [aspectRatioMode]="aspectRatioMode"></image>
+    <view id="details">
+      <app-summary [title]="'name'" [description]="'description'"></app-summary>
+      <view id="tempbox">
+        <app-temerature [now]="3" [max]="5" [min]="1"></app-temerature>
+      </view>
+    </view>
+  </view>
+</window>

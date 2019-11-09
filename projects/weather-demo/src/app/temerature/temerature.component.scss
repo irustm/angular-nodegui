@@ -1,0 +1,25 @@
+#temperature{
+  border-right: 1px solid white;
+  flex: 1;
+  align-items: 'center';
+  justify-content: 'center';
+}
+
+#currentTemp{
+  font-size: 20px;
+  width: 100px;
+  qproperty-alignment: AlignCenter;
+  color: white;
+}
+
+#smallbox{
+  flex-direction: 'row';
+  align-items: 'center';
+  justify-content: 'center';
+}
+
+#smallinfo{
+  width: 150px;
+  color: white;
+  qproperty-alignment: AlignCenter;
+}

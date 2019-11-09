@@ -19,7 +19,16 @@ export class NgImage extends QLabel implements NgComponent {
     name: string,
     value: string,
     namespace?: string | null
-  ): void {}
+  ): void {
+    switch (name) {
+      case 'id':
+        this.setObjectName(value);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   public setProperty(
     name: string,
@@ -34,10 +43,11 @@ export class NgImage extends QLabel implements NgComponent {
           return;
         }
         const pixMap = new QPixmap(value as string);
-        this.setPixmap(pixMap);
-        const size = this.size();
 
-        this.scalePixmap(size.width, size.height);
+        this.setPixmap(pixMap);
+        // TODO: not set current aspect size
+        // const size = this.size();
+        // this.scalePixmap(size.width, size.height);
         break;
       case 'aspectRatioMode':
         this.setAspectRatioMode(value as AspectRatioMode);

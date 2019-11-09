@@ -1,4 +1,10 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  OnInit,
+  ElementRef
+} from '@angular/core';
 import { AspectRatioMode, WindowType } from '@nodegui/nodegui';
 import { NgWindow } from '../../projects/angular-nodegui/src/lib/components/window';
 
@@ -9,19 +15,17 @@ import { NgWindow } from '../../projects/angular-nodegui/src/lib/components/wind
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  @ViewChild('window', { static: true}) window: ElementRef<NgWindow>;
+  @ViewChild('window', { static: true }) window: ElementRef<NgWindow>;
 
   public name = 'irustm';
   public aspectRatioMode = AspectRatioMode.KeepAspectRatio;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
     const win = this.window.nativeElement.parent;
 
-    win.setFixedSize(630, 560);
+    win.setMinimumSize(630, 560);
     // win.setWindowFlag(WindowType.FramelessWindowHint, true);
     // win.setWindowFlag(WindowType.Widget, true);
   }
@@ -33,5 +37,4 @@ export class AppComponent implements OnInit {
   textChanged(val: string) {
     this.name = val;
   }
-
 }

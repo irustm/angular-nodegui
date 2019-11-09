@@ -137,9 +137,40 @@
               "projects/angular-nodegui/tsconfig.lib.json",
               "projects/angular-nodegui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "weather-demo": {
+      "projectType": "application",
+      "root": "projects/weather-demo",
+      "sourceRoot": "projects/weather-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/weather-demo/tsconfig.lib.json",
+            "project": "projects/weather-demo/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/weather-demo/src/test.ts",
+            "tsConfig": "projects/weather-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/weather-demo/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/weather-demo/tsconfig.lib.json",
+              "projects/weather-demo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
