@@ -36,6 +36,7 @@ npm start
   <br/>
 
 Demo widget
+<br/>
 <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_weather_widget.png" width="600" title="angular nodegui demo">
 
 </p>
