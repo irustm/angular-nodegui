@@ -30,7 +30,7 @@ npm start
 ## Demo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_start.png" width="350" title="angular nodegui demo">
-
-  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_widget.png" width="600" title="angular nodegui demo">
+  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_app.png" width="350" title="angular nodegui demo">
+  <br/>
+  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_weather_widget.png" width="600" title="angular nodegui demo">
 </p>
