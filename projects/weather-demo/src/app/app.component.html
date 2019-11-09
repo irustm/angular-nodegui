@@ -1,11 +1,17 @@
 <window #window title="Weather" id="win">
   <view id="container">
-    <image id="image" [src]="'./projects/weather-demo/src/assets/04d.png'" [aspectRatioMode]="aspectRatioMode"></image>
+    <image id="image" [src]="'./projects/weather-demo/src/assets/09d.png'" [aspectRatioMode]="aspectRatioMode"></image>
     <view id="details">
-      <app-summary [title]="'name'" [description]="'description'"></app-summary>
+      <app-summary id="summary" [title]="'Rain'" [description]="'shower rain'"></app-summary>
       <view id="tempbox">
         <app-temerature [now]="3" [max]="5" [min]="1"></app-temerature>
+        <app-placedate [place]="'Snt.Petersburg'" [date]="date"></app-placedate>
+      </view>
+      <view id="buttonbox">
+        <button (clicked)="onRefresh()">Refresh</button>
+        <button (clicked)="onClose()">Close</button>
       </view>
     </view>
+
   </view>
 </window>

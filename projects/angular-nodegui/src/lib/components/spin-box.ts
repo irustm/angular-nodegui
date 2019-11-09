@@ -21,7 +21,16 @@ export class NgSpinnBox extends QSpinBox implements NgComponent {
     name: string,
     value: string,
     namespace?: string | null
-  ): void {}
+  ): void {
+    switch (name) {
+      case 'id':
+        this.setObjectName(value);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   public setProperty(
     name: string,

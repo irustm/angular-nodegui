@@ -22,10 +22,26 @@ export class NgText extends QLabel implements NgComponent {
     name: string,
     value: string,
     namespace?: string | null
-  ): void {}
+  ): void {
+    switch (name) {
+      case 'id':
+        this.setObjectName(value);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   public setProperty(name: string, value: any): void {
-    throw new Error('Method not implemented.');
+    switch (name) {
+      case 'style':
+        this.setStyleSheet(value);
+        break;
+
+      default:
+        break;
+    }
   }
 
   public setStyle(

@@ -6,6 +6,7 @@
   flex: 2;
   qproperty-alignment: 'AlignCenter';
   margin-right: '10%';
+  margin-top: 40px;
 }
 
 #container {
@@ -21,7 +22,19 @@
   border-radius: 5px;
 }
 
+#summary{
+  justify-content: 'center';
+}
+
+
 #tempbox {
-  margin-vertical: 10px;
+  margin-top: 10px;
   flex-direction: 'row';
 }
+
+#buttonbox {
+  margin-top: 10px;
+  flex-direction: 'row';
+  justify-content: 'center';
+}
+

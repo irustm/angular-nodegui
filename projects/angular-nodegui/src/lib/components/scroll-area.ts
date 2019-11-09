@@ -16,7 +16,16 @@ export class NgScrollArea extends QScrollArea implements NgComponent {
     name: string,
     value: string,
     namespace?: string | null
-  ): void {}
+  ): void {
+    switch (name) {
+      case 'id':
+        this.setObjectName(value);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   public setProperty(name: string, value: boolean | string): void {
     switch (name) {

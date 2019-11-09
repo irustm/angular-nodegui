@@ -1,10 +1,8 @@
 <view id="temperature">
-  <text id="currentTemp">
-    {{now}} o C
-  </text>
+  <text [style]="currentTempStyle">{{now}}{{sup}} C</text>
   <view id="smallbox">
-    <text id="smallinfo">
-      {{min}}o C / {{max}} o C
+    <text [style]="smallInfo">
+      {{min}}{{sup}} C / {{max}}{{sup}} C
     </text>
   </view>
 </view>

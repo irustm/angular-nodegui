@@ -5,7 +5,12 @@ import {
   OnInit,
   ElementRef
 } from '@angular/core';
-import { WindowType, WidgetAttribute, AspectRatioMode } from '@nodegui/nodegui';
+import {
+  WindowType,
+  WidgetAttribute,
+  AspectRatioMode,
+  QApplication
+} from '@nodegui/nodegui';
 import { NgWindow } from '../../../../projects/angular-nodegui/src/lib/components/window';
 import * as os from 'os';
 
@@ -13,20 +18,22 @@ import * as os from 'os';
   // tslint:disable-next-line: component-selector
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   @ViewChild('window', { static: true }) window: ElementRef<NgWindow>;
 
-  public aspectRatioMode = AspectRatioMode.KeepAspectRatio;
+  public aspectRatioMode: AspectRatioMode = AspectRatioMode.KeepAspectRatio;
+  public date: Date = new Date();
+
   constructor() {}
 
   ngOnInit() {
     const win = this.window.nativeElement.parent;
 
     win.hide();
-    win.resize(300, 300);
+    win.resize(300, 340);
 
     win.setWindowFlag(WindowType.FramelessWindowHint, true);
     win.setWindowFlag(WindowType.Widget, true);
@@ -40,5 +47,8 @@ export class AppComponent implements OnInit {
     win.show();
   }
 
-  textChanged(val: string) {}
+  onRefresh(): void {}
+  onClose(): void {
+    QApplication.instance().quit();
+  }
 }

@@ -5,9 +5,10 @@ import { NodeguiLibModule } from '../../../../projects/angular-nodegui/src/lib/n
 import { AppComponent } from './app.component';
 import { SummaryComponent } from './summary/summary.component';
 import { TemeratureComponent } from './temerature/temerature.component';
+import { PlacedateComponent } from './placedate/placedate.component';
 
 @NgModule({
-  declarations: [AppComponent, SummaryComponent, TemeratureComponent],
+  declarations: [AppComponent, SummaryComponent, TemeratureComponent, PlacedateComponent],
   imports: [NodeguiLibModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
