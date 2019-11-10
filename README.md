@@ -45,7 +45,7 @@ npm start
 
 #### Mac
 <p align="center">
-  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_weather_widget_mac.png" width="600" title="angular nodegui demo">
+  <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_widget_mac.png" width="300" title="angular nodegui demo">
 </p>
 
 #### Windows
