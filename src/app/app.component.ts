@@ -6,6 +6,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { AspectRatioMode } from '@nodegui/nodegui';
+import { Router } from '@angular/router';
 import { NgWindow } from '../../projects/angular-nodegui/src/lib/components/window';
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   public name = 'irustm';
   public aspectRatioMode = AspectRatioMode.KeepAspectRatio;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     const win = this.window.nativeElement.parent;
@@ -29,8 +30,8 @@ export class AppComponent implements OnInit {
     win.setMinimumSize(480, 620);
   }
 
-  setName() {
-    this.name = 'irustm';
+  setRoute() {
+    this.router.navigateByUrl('/hello');
   }
 
   textChanged(val: string) {

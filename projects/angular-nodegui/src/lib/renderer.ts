@@ -88,6 +88,10 @@ export class NodeguiRenderer implements Renderer2 {
   destroy(): void {}
 
   insertBefore(parent: NgComponent, newChild: any, refChild: any): void {
+    // TODO: insert before for router-outlet
+    console.log('insertBefore');
+    console.log(parent, newChild, refChild);
+
     parent.insertBefore(newChild, refChild);
   }
 

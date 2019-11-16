@@ -9,6 +9,10 @@ import {
 import { NodeguiRendererFactory } from './renderer';
 import { QWindowService } from './window';
 import { ComponentsMap } from './components/components-map';
+import {
+  ViewportScroller,
+  ɵNullViewportScroller as NullViewportScroller
+} from '@angular/common';
 
 @Injectable()
 export class NodeguiErrorHandler implements ErrorHandler {
@@ -27,7 +31,8 @@ export class NodeguiErrorHandler implements ErrorHandler {
       useClass: NodeguiRendererFactory,
       deps: [QWindowService, ComponentsMap]
     },
-    { provide: ErrorHandler, useClass: NodeguiErrorHandler }
+    { provide: ErrorHandler, useClass: NodeguiErrorHandler },
+    { provide: ViewportScroller, useClass: NullViewportScroller }
   ]
 })
 export class NodeguiLibModule {}

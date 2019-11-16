@@ -2,13 +2,17 @@
   <view id="app">
     <image id="image" [src]="'./src/assets/angular.png'" [aspectRatioMode]="aspectRatioMode"></image>
 
-    <app-hello [name]="name"></app-hello>
+    <!-- <app-hello [name]="name"></app-hello> -->
 
     <text>Github username</text>
     <linedit [text]="name" [placeholderText]="'Insert github username'" (textChanged)="textChanged($event)"></linedit>
 
+    <button (clicked)="setRoute()">
+      to home route
+    </button>
     <!-- <checkbox [checked]="true"></checkbox>
     <checkbox [checked]="true" [enabled]="false"></checkbox>
+
     <button [style.background-color]="'green'" (clicked)="setName()">
       Green button
     </button>
@@ -22,5 +26,6 @@
       [value]="20"
     >
     </spinbox> -->
+    <router-outlet></router-outlet>
   </view>
 </window>
