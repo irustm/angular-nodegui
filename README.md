@@ -44,11 +44,21 @@ npm start
 [Link](https://github.com/irustm/angular-nodegui/tree/master/projects/weather-demo)
 
 #### Mac
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_widget_mac.png" width="300" title="angular nodegui demo">
 </p>
 
 #### Windows
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/irustm/angular-nodegui/master/demo/demo_weather_widget.png" width="600" title="angular nodegui demo">
 </p>
+
+### Router
+
+Use `NodeguiRouterModule` instead of `RouterModule` for routing. [Example](https://github.com/irustm/angular-nodegui/blob/master/src/app/app.module.ts#L23)
+
+```js
+NodeguiRouterModule.forRoot(appRoutes);
+```
