@@ -7,11 +7,16 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
 import { GithubService } from './github.service';
 import { NodeguiRouterModule } from '../../projects/angular-nodegui/src/lib/router/router.module';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
-const appRoutes: Routes = [{ path: 'hello', component: HelloComponent }];
+const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent }
+];
 
 @NgModule({
-  declarations: [AppComponent, HelloComponent],
+  declarations: [AppComponent, HelloComponent, HomeComponent, AboutComponent],
   imports: [
     NodeguiLibModule,
     HttpClientModule,

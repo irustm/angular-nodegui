@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
     win.setMinimumSize(480, 620);
   }
 
-  setRoute() {
-    this.router.navigateByUrl('/hello');
+  goToPage(url: string) {
+    this.router.navigateByUrl(url);
   }
 
   textChanged(val: string) {

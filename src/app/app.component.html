@@ -2,13 +2,19 @@
   <view id="app">
     <image id="image" [src]="'./src/assets/angular.png'" [aspectRatioMode]="aspectRatioMode"></image>
 
-    <!-- <app-hello [name]="name"></app-hello> -->
+    <app-hello [name]="name"></app-hello>
 
     <text>Github username</text>
     <linedit [text]="name" [placeholderText]="'Insert github username'" (textChanged)="textChanged($event)"></linedit>
 
-    <button (clicked)="setRoute()">
-      to home route
+    <button (clicked)="goToPage('/')">
+      first page
+    </button>
+    <button (clicked)="goToPage('/home')">
+      home page
+    </button>
+    <button (clicked)="goToPage('/about')">
+      about page
     </button>
     <!-- <checkbox [checked]="true"></checkbox>
     <checkbox [checked]="true" [enabled]="false"></checkbox>

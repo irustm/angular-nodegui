@@ -11,21 +11,25 @@ export class NgView extends QWidget implements NgComponent {
       return;
     }
     if (!this.layout) {
-      const flexLayout = new FlexLayout();
-      flexLayout.setFlexNode(this.getFlexNode());
-      this.setLayout(flexLayout);
-      this.layout = flexLayout;
+      this.createLayout();
     }
 
     this.layout.addWidget(newChild);
   }
 
   public insertBefore(newChild: any, refChild: any) {
-    if (!this.layout) {
-      console.warn('parent has no layout to insert child before another child');
+    if (!newChild) {
       return;
     }
+    if (!this.layout) {
+      this.createLayout();
+    }
     (this.layout as FlexLayout).insertChildBefore(newChild, this);
+  }
+
+  removeChild(oldChild: NgView): void {
+    oldChild.hide(); // it's necessary that there's no overlapping of widgets when removing
+    (this.layout as FlexLayout).removeWidget(oldChild);
   }
 
   public setNgAttribute(
@@ -62,13 +66,18 @@ export class NgView extends QWidget implements NgComponent {
   removeAttribute(name: string, namespace?: string): void {
     throw new Error('Method not implemented.');
   }
-  removeChild(oldChild: any): void {
-    throw new Error('Method not implemented.');
-  }
+
   removeClass(name: string): void {
     throw new Error('Method not implemented.');
   }
   removeStyle(style: string, flags?: RendererStyleFlags2): void {
     throw new Error('Method not implemented.');
+  }
+
+  private createLayout() {
+    const flexLayout = new FlexLayout();
+    flexLayout.setFlexNode(this.getFlexNode());
+    this.setLayout(flexLayout);
+    this.layout = flexLayout;
   }
 }

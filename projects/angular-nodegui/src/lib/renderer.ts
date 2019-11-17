@@ -13,6 +13,11 @@ import { ComponentsMap, NgComponentClass } from './components/components-map';
 import { TextField } from './components/nodes';
 import { NgView } from './components/view';
 
+export interface ElementReference {
+  previous: NgView;
+  next: NgView;
+}
+
 @Injectable()
 export class NodeguiRendererFactory implements RendererFactory2 {
   protected renderer: Renderer2;
@@ -87,12 +92,17 @@ export class NodeguiRenderer implements Renderer2 {
 
   destroy(): void {}
 
-  insertBefore(parent: NgComponent, newChild: any, refChild: any): void {
-    // TODO: insert before for router-outlet
-    console.log('insertBefore');
-    console.log(parent, newChild, refChild);
+  insertBefore(
+    parent: NgComponent,
+    newChild: any,
+    { previous, next }: ElementReference
+  ): void {
+    newChild.parent = previous;
+    previous.insertBefore(newChild, next);
+  }
 
-    parent.insertBefore(newChild, refChild);
+  removeChild(parent: NgComponent, oldChild: NgView): void {
+    parent.removeChild(oldChild);
   }
 
   listen(
@@ -107,11 +117,16 @@ export class NodeguiRenderer implements Renderer2 {
     return () => target.removeEventListener(eventName, callbackFunc);
   }
 
-  nextSibling(node: any): any {
-    console.log('nextSibling');
+  nextSibling(node: any): ElementReference {
+    return {
+      previous: node,
+      next: node.nextSibling
+    };
   }
 
-  parentNode(node: any): any {}
+  parentNode(node: any): any {
+    return node.parent ? node.parent : node;
+  }
 
   removeAttribute(
     el: NgComponent,
@@ -119,10 +134,6 @@ export class NodeguiRenderer implements Renderer2 {
     namespace?: string | null
   ): void {
     el.removeAttribute(name, namespace);
-  }
-
-  removeChild(parent: NgComponent, oldChild: any): void {
-    parent.removeChild(oldChild);
   }
 
   removeClass(el: NgComponent, name: string): void {
