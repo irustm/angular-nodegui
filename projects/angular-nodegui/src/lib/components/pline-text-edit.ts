@@ -27,7 +27,7 @@ export class NgPlainTextEdit extends QPlainTextEdit implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: boolean | string): void {
+  public setNgProperty(name: string, value: boolean | string): void {
     switch (name) {
       case 'text':
         value ? this.setPlainText(value as string) : this.clear();

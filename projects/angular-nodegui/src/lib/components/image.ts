@@ -1,6 +1,7 @@
-import { QLabel, QPixmap, AspectRatioMode } from '@nodegui/nodegui';
-import { NgComponent } from './component';
 import { RendererStyleFlags2 } from '@angular/core';
+import { QLabel, QPixmap, AspectRatioMode } from '@nodegui/nodegui';
+import * as phin from 'phin';
+import { NgComponent } from './component';
 
 export class NgImage extends QLabel implements NgComponent {
   public static nodeName = 'image';
@@ -30,9 +31,9 @@ export class NgImage extends QLabel implements NgComponent {
     }
   }
 
-  public setProperty(
+  public setNgProperty(
     name: string,
-    value: string | boolean | AspectRatioMode
+    value: string | boolean | AspectRatioMode | Buffer
   ): void {
     switch (name) {
       case 'enabled':
@@ -42,13 +43,21 @@ export class NgImage extends QLabel implements NgComponent {
         if (!value) {
           return;
         }
-        const pixMap = new QPixmap(value as string);
+        getLoadedPixmap(value as string)
+        .then(pixmap => this.setPixmap(pixmap))
+        .catch(console.warn);
 
-        this.setPixmap(pixMap);
         // TODO: not set current aspect size
         // const size = this.size();
         // this.scalePixmap(size.width, size.height);
         break;
+
+      case 'buffer':
+        const pixMap = new QPixmap();
+        pixMap.loadFromData(value as Buffer);
+        this.setPixmap(pixMap);
+        break;
+
       case 'aspectRatioMode':
         this.setAspectRatioMode(value as AspectRatioMode);
         break;
@@ -98,5 +107,27 @@ export class NgImage extends QLabel implements NgComponent {
   }
   removeStyle(style: string, flags?: RendererStyleFlags2): void {
     throw new Error('Method not implemented.');
+  }
+}
+
+async function getLoadedPixmap(imageUrlOrPath: string): Promise<QPixmap> {
+  const pixMap = new QPixmap();
+  if (isValidUrl(imageUrlOrPath)) {
+    const res = await phin(imageUrlOrPath);
+    const imageBuffer = Buffer.from(res.body);
+    pixMap.loadFromData(imageBuffer);
+  } else {
+    pixMap.load(imageUrlOrPath);
+  }
+  return pixMap;
+}
+
+export function isValidUrl(str: string) {
+  try {
+    // tslint:disable-next-line:no-unused-expression
+    new URL(str);
+    return true;
+  } catch (_) {
+    return false;
   }
 }

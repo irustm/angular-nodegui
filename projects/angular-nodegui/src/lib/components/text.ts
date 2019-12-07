@@ -33,7 +33,7 @@ export class NgText extends QLabel implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: any): void {
+  public setNgProperty(name: string, value: any): void {
     switch (name) {
       case 'style':
         this.setStyleSheet(value);

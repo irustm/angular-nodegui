@@ -28,9 +28,10 @@
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
-    "@nodegui/nodegui": "^0.2.1",
+    "@nodegui/nodegui": "^0.8.0",
     "core-js": "^3.3.2",
     "node-fetch": "^2.6.0",
+    "phin": "^3.4.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "^0.9.1"

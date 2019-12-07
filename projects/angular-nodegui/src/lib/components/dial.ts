@@ -27,7 +27,7 @@ export class NgDial extends QDial implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: boolean | number): void {
+  public setNgProperty(name: string, value: boolean | number): void {
     switch (name) {
       case 'enabled':
         this.setEnabled(value as boolean);

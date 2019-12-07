@@ -18,7 +18,7 @@ export class NgProgressBar extends QProgressBar implements NgComponent {
     namespace?: string | null
   ): void {}
 
-  public setProperty(name: string, value: any): void {
+  public setNgProperty(name: string, value: any): void {
     switch (name) {
       case 'value':
         this.setValue(value);

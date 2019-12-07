@@ -30,7 +30,7 @@ export class NgWindow extends FlexLayout implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: any): void {
+  public setNgProperty(name: string, value: any): void {
     throw new Error('Method not implemented.');
   }
 

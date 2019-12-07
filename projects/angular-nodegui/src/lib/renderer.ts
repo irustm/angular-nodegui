@@ -162,7 +162,7 @@ export class NodeguiRenderer implements Renderer2 {
   }
 
   setProperty(el: NgComponent, name: string, value: any): void {
-    el.setProperty(name, value);
+    el.setNgProperty(name, value);
   }
 
   setStyle(

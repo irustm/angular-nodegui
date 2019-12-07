@@ -33,7 +33,7 @@ export class NgCheckbox extends QCheckBox implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: boolean): void {
+  public setNgProperty(name: string, value: boolean): void {
     switch (name) {
       case 'checked':
         this.setChecked(value);

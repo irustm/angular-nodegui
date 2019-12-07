@@ -27,7 +27,7 @@ export class NgLineEdit extends QLineEdit implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: boolean | string): void {
+  public setNgProperty(name: string, value: boolean | string): void {
     switch (name) {
       case 'text':
         value ? this.setText(value as string) : this.clear();

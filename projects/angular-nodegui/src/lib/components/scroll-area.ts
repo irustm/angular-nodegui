@@ -27,7 +27,7 @@ export class NgScrollArea extends QScrollArea implements NgComponent {
     }
   }
 
-  public setProperty(name: string, value: boolean | string): void {
+  public setNgProperty(name: string, value: boolean | string): void {
     switch (name) {
       case 'enabled':
         this.setEnabled(value as boolean);

@@ -7,7 +7,7 @@ export interface NgComponent {
 
   setNgAttribute(name: string, value: string, namespace?: string | null): void;
 
-  setProperty(name: string, value: any): void;
+  setNgProperty(name: string, value: any): void;
 
   setStyle(style: string, value: any, flags?: RendererStyleFlags2): void;
 

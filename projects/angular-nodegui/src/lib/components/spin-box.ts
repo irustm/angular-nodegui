@@ -32,7 +32,7 @@ export class NgSpinnBox extends QSpinBox implements NgComponent {
     }
   }
 
-  public setProperty(
+  public setNgProperty(
     name: string,
     value: boolean | string | Range | number
   ): void {
