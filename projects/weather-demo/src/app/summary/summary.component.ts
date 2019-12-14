@@ -13,15 +13,11 @@ import {
   styleUrls: ['./summary.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SummaryComponent implements OnInit, OnChanges {
+export class SummaryComponent implements OnChanges {
   @Input() title: string;
   @Input() description: string;
 
   public summary;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   ngOnChanges(): void {
     this.summary = `<b>${this.title}<b> : <i>${this.description}</i>`;

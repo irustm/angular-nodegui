@@ -7,7 +7,7 @@ import { dateFormatter } from '../utils/helpers';
   styleUrls: ['./placedate.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlacedateComponent implements OnInit {
+export class PlacedateComponent {
   @Input() place: string;
   @Input() set date(value: Date) {
     this.fullDate = dateFormatter(value);
@@ -15,19 +15,17 @@ export class PlacedateComponent implements OnInit {
 
   public fullDate: string;
 
-  public placeStyle = `
+  public  readonly placeStyle = `
     flex: 1;
     font-size: 20px;
     qproperty-alignment: 'AlignCenter';
     color: white;
   `;
-  public dateStyle = `
+
+  public readonly dateStyle = `
     flex: 1;
     font-size: 12px;
     qproperty-alignment: 'AlignCenter';
     color: white;
   `;
-  constructor() {}
-
-  ngOnInit() {}
 }

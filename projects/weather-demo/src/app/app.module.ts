@@ -10,7 +10,6 @@ import { PlacedateComponent } from './placedate/placedate.component';
 @NgModule({
   declarations: [AppComponent, SummaryComponent, TemeratureComponent, PlacedateComponent],
   imports: [NodeguiLibModule, HttpClientModule],
-  providers: [],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

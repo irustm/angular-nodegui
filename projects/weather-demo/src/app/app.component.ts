@@ -29,6 +29,9 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
+  /**
+   * Init component and configure window widget
+   */
   ngOnInit() {
     const win = this.window.nativeElement.parent;
 
@@ -47,7 +50,14 @@ export class AppComponent implements OnInit {
     win.show();
   }
 
+  /**
+   * Refresh weather info
+   */
   onRefresh(): void {}
+
+  /**
+   * Close applicatiion
+   */
   onClose(): void {
     QApplication.instance().quit();
   }
