@@ -9,6 +9,9 @@ import { AspectRatioMode } from '@nodegui/nodegui';
 import { Router } from '@angular/router';
 import { NgWindow } from '../../projects/angular-nodegui/src/lib/components/window';
 
+const windowHeight = 480;
+const windowWeight = 620;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,18 +26,27 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  /**
+   * Init component and configure window widget
+   */
+  ngOnInit(): void {
     const win = this.window.nativeElement.parent;
 
-    win.resize(480, 620);
-    win.setMinimumSize(480, 620);
+    win.resize(windowHeight, windowWeight);
+    win.setMinimumSize(windowHeight, windowWeight);
   }
 
-  goToPage(url: string) {
+  /**
+   * Change router
+   */
+  public goToPage(url: string): void {
     this.router.navigateByUrl(url);
   }
 
-  textChanged(val: string) {
+  /**
+   * Change text from text edit
+   */
+  public onTextChanged(val: string): void {
     this.name = val;
   }
 }

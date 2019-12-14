@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   Input,
   OnDestroy
@@ -14,7 +13,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./hello.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HelloComponent implements OnInit, OnDestroy {
+export class HelloComponent implements OnDestroy {
+
   @Input() set name(value) {
     this.getUsername(value);
   }
@@ -25,9 +25,7 @@ export class HelloComponent implements OnInit, OnDestroy {
 
   constructor(private github: GithubService) {}
 
-  ngOnInit(): void {}
-
-  private getUsername(username: string) {
+  private getUsername(username: string): void {
     if (this.subscribtion) {
       this.subscribtion.unsubscribe();
     }
