@@ -36,9 +36,6 @@ export class NgImage extends QLabel implements NgComponent {
     value: string | boolean | AspectRatioMode | Buffer
   ): void {
     switch (name) {
-      case 'enabled':
-        this.setEnabled(value as boolean);
-        break;
       case 'src':
         if (!value) {
           return;
@@ -63,6 +60,7 @@ export class NgImage extends QLabel implements NgComponent {
         break;
 
       default:
+        this.setProperty(name, value);
         break;
     }
   }

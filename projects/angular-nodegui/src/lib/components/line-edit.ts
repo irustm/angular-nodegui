@@ -32,13 +32,8 @@ export class NgLineEdit extends QLineEdit implements NgComponent {
       case 'text':
         value ? this.setText(value as string) : this.clear();
         break;
-      case 'placeholderText':
-        this.setPlaceholderText(value as string);
-        break;
-      case 'readOnly':
-        this.setReadOnly(value as boolean);
-        break;
       default:
+        this.setProperty(name, value);
         break;
     }
   }

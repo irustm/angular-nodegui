@@ -28,22 +28,7 @@ export class NgDial extends QDial implements NgComponent {
   }
 
   public setNgProperty(name: string, value: boolean | number): void {
-    switch (name) {
-      case 'enabled':
-        this.setEnabled(value as boolean);
-        break;
-      case 'notchesVisible':
-        this.setNotchesVisible(value as boolean);
-        break;
-      case 'wrapping':
-        this.setWrapping(value as boolean);
-        break;
-      case 'notchTarget':
-        this.setNotchTarget(value as number);
-        break;
-      default:
-        break;
-    }
+    this.setProperty(name, value);
   }
 
   public setStyle(

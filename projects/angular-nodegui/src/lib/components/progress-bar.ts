@@ -19,25 +19,7 @@ export class NgProgressBar extends QProgressBar implements NgComponent {
   ): void {}
 
   public setNgProperty(name: string, value: any): void {
-    switch (name) {
-      case 'value':
-        this.setValue(value);
-        break;
-      case 'minimum':
-        this.setMinimum(value);
-        break;
-      case 'maximum':
-        this.setMaximum(value);
-        break;
-      case 'orientation':
-        this.setOrientation(value);
-        break;
-      case 'enabled':
-        this.setEnabled(value);
-        break;
-      default:
-        break;
-    }
+    this.setProperty(name, value);
   }
 
   public setStyle(

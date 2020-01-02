@@ -28,16 +28,7 @@ export class NgRadioButton extends QRadioButton implements NgComponent {
   }
 
   public setNgProperty(name: string, value: boolean | string): void {
-    switch (name) {
-      case 'text':
-        this.setText(value as string);
-        break;
-      case 'enabled':
-        this.setEnabled(value as boolean);
-        break;
-      default:
-        break;
-    }
+    this.setProperty(name, value);
   }
 
   public setStyle(

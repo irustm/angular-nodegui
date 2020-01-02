@@ -37,22 +37,12 @@ export class NgSpinnBox extends QSpinBox implements NgComponent {
     value: boolean | string | Range | number
   ): void {
     switch (name) {
-      case 'prefix':
-        this.setPrefix(value as string);
-        break;
-      case 'suffix':
-        this.setSuffix(value as string);
-        break;
-      case 'singleStep':
-        this.setSingleStep(value as number);
-        break;
       case 'range':
         this.setRange((value as Range).minimum, (value as Range).maximum);
         break;
-      case 'value':
-        this.setValue(value as number);
-        break;
+
       default:
+        this.setProperty(name, value);
         break;
     }
   }

@@ -48,7 +48,7 @@ export class NgView extends QWidget implements NgComponent {
   }
 
   public setNgProperty(name: string, value: any): void {
-    throw new Error('Method not implemented.');
+    this.setProperty(name, value);
   }
 
   public setStyle(
