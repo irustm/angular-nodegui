@@ -1,7 +1,8 @@
 import { RendererStyleFlags2 } from '@angular/core';
 import { QLabel, QPixmap, AspectRatioMode } from '@nodegui/nodegui';
-import * as phin from 'phin';
+import phin from 'phin';
 import { NgComponent } from './component';
+import { QVariantType } from '@nodegui/nodegui/dist/lib/QtCore/QVariant';
 
 export class NgImage extends QLabel implements NgComponent {
   public static nodeName = 'image';
@@ -33,7 +34,7 @@ export class NgImage extends QLabel implements NgComponent {
 
   public setNgProperty(
     name: string,
-    value: string | boolean | AspectRatioMode | Buffer
+    value: string | boolean | AspectRatioMode | Buffer | QVariantType
   ): void {
     switch (name) {
       case 'src':
@@ -60,7 +61,7 @@ export class NgImage extends QLabel implements NgComponent {
         break;
 
       default:
-        this.setProperty(name, value);
+        this.setProperty(name, value as QVariantType);
         break;
     }
   }

@@ -1,4 +1,5 @@
 import { QSpinBox } from '@nodegui/nodegui';
+import { QVariantType } from '@nodegui/nodegui/dist/lib/QtCore/QVariant';
 import { NgComponent } from './component';
 import { RendererStyleFlags2 } from '@angular/core';
 
@@ -34,7 +35,7 @@ export class NgSpinnBox extends QSpinBox implements NgComponent {
 
   public setNgProperty(
     name: string,
-    value: boolean | string | Range | number
+    value: Range | QVariantType
   ): void {
     switch (name) {
       case 'range':
@@ -42,7 +43,7 @@ export class NgSpinnBox extends QSpinBox implements NgComponent {
         break;
 
       default:
-        this.setProperty(name, value);
+        this.setProperty(name, value as QVariantType);
         break;
     }
   }

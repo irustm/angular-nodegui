@@ -5,7 +5,7 @@ import {
   RendererStyleFlags2,
   RendererType2
 } from '@angular/core';
-import { QMainWindow, NativeEvent, QWidget } from '@nodegui/nodegui';
+import { QMainWindow, QWidget } from '@nodegui/nodegui';
 import { QWindowService } from './window';
 import { NgWindow } from './components/window';
 import { NgComponent } from './components/component';
@@ -110,7 +110,7 @@ export class NodeguiRenderer implements Renderer2 {
     eventName: string,
     callback: (event: any) => boolean | void
   ): () => void {
-    const callbackFunc = (e: NativeEvent) => callback.call(target, e);
+    const callbackFunc = (e: any) => callback.call(target, e);
 
     target.addEventListener(eventName, callbackFunc);
 
