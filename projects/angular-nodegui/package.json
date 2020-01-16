@@ -1,13 +1,13 @@
 {
   "name": "angular-nodegui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/irustm/angular-nodegui.git"
   },
   "peerDependencies": {
-    "@nodegui/nodegui": ">=0.3.0",
+    "@nodegui/nodegui": ">=0.12.0",
     "@nodegui/qode": "*",
     "@angular/common": "^8.2.11",
     "@angular/core": "^8.2.11"
