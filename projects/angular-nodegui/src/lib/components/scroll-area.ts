@@ -1,4 +1,4 @@
-import { QScrollArea } from '@nodegui/nodegui';
+import { QScrollArea, FlexLayout } from '@nodegui/nodegui';
 import { NgComponent } from './component';
 import { RendererStyleFlags2 } from '@angular/core';
 
@@ -7,10 +7,16 @@ export class NgScrollArea extends QScrollArea implements NgComponent {
   public parent: any;
 
   public appendChild(newChild: any): void {
-    throw new Error('Method not implemented.');
+    if (this.contentWidget) {
+      console.warn('ScrollView cant have more than one child node');
+      return;
+    }
+    this.setWidget(newChild);
   }
 
-  public insertBefore(newChild: any, refChild: any) {}
+  public insertBefore(newChild: any, refChild: any) {
+    throw new Error('Method not implemented.');
+  }
 
   public setNgAttribute(
     name: string,
@@ -44,9 +50,15 @@ export class NgScrollArea extends QScrollArea implements NgComponent {
   removeAttribute(name: string, namespace?: string): void {
     throw new Error('Method not implemented.');
   }
+
   removeChild(oldChild: any): void {
-    throw new Error('Method not implemented.');
+    const removedChild = this.takeWidget();
+    if (removedChild) {
+      removedChild.close();
+    }
+    oldChild.close();
   }
+
   removeClass(name: string): void {
     throw new Error('Method not implemented.');
   }
