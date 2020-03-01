@@ -11,7 +11,6 @@
     "build:prod": "ng build",
     "build-dev": "ngc -p tsconfig.app.json",
     "build-weather": "ngc -p ./projects/weather-demo/tsconfig.app.json",
-    "build-ngtsc": "ngc -p tsconfig.ngtsc.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
